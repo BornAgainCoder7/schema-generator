@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bread of Life Schema JSON-LD Generator</title>
+  <!-- ✅ External CSS Link -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Bread of Life Schema JSON-LD Generator</h1>
+    <label for="type">Select Type:</label>
+    <select id="type">
+      <option value="LocalBusiness">LocalBusiness</option>
+      <option value="BlogPosting">BlogPosting</option>
+      <option value="WebSite">WebSite</option>
+      <option value="Person">Person</option>
+      <option value="SearchAction">SearchAction</option>
+    </select>
+
+    <form id="form"></form>
+    <button onclick="generateJSONLD()">Generate JSON-LD</button>
+    <textarea id="output" readonly></textarea>
+  </div>
+
+  <script>
+    const hints = {
+      LocalBusiness: {
+        name: 'e.g., Bread of Life Bakery',
+        url: 'e.g., https://www.example.com',
+        telephone: 'e.g., +1-800-555-1212',
+        streetAddress: 'e.g., 123 Faith Lane',
+        addressLocality: 'e.g., Cincinnati',
+        addressRegion: 'e.g., OH',
+        postalCode: 'e.g., 45211',
+        addressCountry: 'e.g., US'
+      },
+      BlogPosting: {
+        headline: 'e.g., How to Bake Bread',
+        author: 'e.g., John Doe',
+        publisher: 'e.g., Bread of Life Inc.',
+        datePublished: 'e.g., 2025-01-01T00:00:00Z',
+        url: 'e.g., https://www.example.com/blog-title',
+        image: 'e.g., https://example.com/image.jpg'
+      },
+      WebSite: {
+        name: 'e.g., Bread of Life Website',
+        url: 'e.g., https://www.example.com'
+      },
+      Person: {
+        name: 'e.g., Jane Doe',
+        jobTitle: 'e.g., Pastor',
+        sameAs: 'e.g., https://www.linkedin.com/in/janedoe/'
+      },
+      SearchAction: {
+        target: 'e.g., https://www.example.com/search?q={search_term_string}',
+        query: 'e.g., search_term_string'
+      }
+    };
+
+    const fieldsByType = {
+      LocalBusiness: ['name', 'url', 'telephone', 'streetAddress', 'addressLocality', 'addressRegion', 'postalCode', 'addressCountry'],
+      BlogPosting: ['headline', 'author', 'publisher', 'datePublished', 'url', 'image'],
+      WebSite: ['name', 'url'],
+      Person: ['name', 'jobTitle', 'sameAs'],
+      SearchAction: ['target', 'query']
+    };
+
+    document.getElementById('type').addEventListener('change', e => generateFields(e.target.value));
+
+    function generateFields(type) {
+      const form = document.getElementById('form');
+      form.innerHTML = '';
+      (fieldsByType[type] || []).forEach(field => {
+        const label = document.createElement('label');
+        label.textContent = field;
+        const input = document.createElement('input');
+        input.name = field;
+        input.placeholder = hints[type]?.[field] || '';
+        form.appendChild(label);
+        form.appendChild(input);
+      });
+    }
+
+    function generateJSONLD() {
+      const type = document.getElementById('type').value;
+      const formData = new FormData(document.getElementById('form'));
+      const jsonLD = {
+        '@context': 'https://schema.org',
+        '@type': type
+      };
+
+      if (type === 'LocalBusiness') {
+        jsonLD.name = formData.get('name') || '';
+        jsonLD.url = formData.get('url') || '';
+        jsonLD.telephone = formData.get('telephone') || '';
+        jsonLD.address = {
+          streetAddress: formData.get('streetAddress') || '',
+          addressLocality: formData.get('addressLocality') || '',
+          addressRegion: formData.get('addressRegion') || '',
+          postalCode: formData.get('postalCode') || '',
+          addressCountry: formData.get('addressCountry') || ''
+        };
+      } else if (type === 'BlogPosting') {
+        jsonLD.headline = formData.get('headline') || '';
+        jsonLD.author = { '@type': 'Person', name: formData.get('author') || '' };
+        jsonLD.publisher = { '@type': 'Organization', name: formData.get('publisher') || '' };
+        jsonLD.datePublished = formData.get('datePublished') || '';
+        jsonLD.url = formData.get('url') || '';
+        jsonLD.image = formData.get('image') || '';
+      } else if (type === 'WebSite') {
+        jsonLD.name = formData.get('name') || '';
+        jsonLD.url = formData.get('url') || '';
+      } else if (type === 'Person') {
+        jsonLD.name = formData.get('name') || '';
+        jsonLD.jobTitle = formData.get('jobTitle') || '';
+        jsonLD.sameAs = formData.get('sameAs') || '';
+      } else if (type === 'SearchAction') {
+        jsonLD['@type'] = 'WebSite';
+        jsonLD.potentialAction = {
+          '@type': 'SearchAction',
+          target: formData.get('target') || '',
+          'query-input': `required name=${formData.get('query') || 'search_term_string'}`
+        };
+      }
+
+      document.getElementById('output').value = JSON.stringify(jsonLD, null, 2);
+    }
+
+    // Initialize default
+    generateFields('LocalBusiness');
+  </script>
+</body>
+</html>

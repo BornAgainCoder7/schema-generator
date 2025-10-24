@@ -1,0 +1,101 @@
+/* === GLOBAL === */
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background-color: #ffffff;
+  color: #000000;
+  margin: 0;
+  padding: 0;
+}
+
+h1, h2, h3 {
+  text-transform: uppercase;
+  font-weight: 600;
+  color: #000;
+}
+
+/* === CONTAINER === */
+.container {
+  max-width: 780px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* === FORM SECTION === */
+label {
+  display: block;
+  margin-bottom: 0.3rem;
+  font-weight: 500;
+}
+
+input[type="text"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 1.2rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  font-size: 1rem;
+  transition: border 0.3s ease, box-shadow 0.3s ease;
+}
+
+input[type="text"]:focus,
+select:focus,
+textarea:focus {
+  border-color: #FFD700;
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
+  outline: none;
+}
+
+/* === BUTTON === */
+button,
+input[type="button"] {
+  background-color: #FFD700;
+  border: none;
+  color: black;
+  font-weight: bold;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: background-color 0.3s ease;
+}
+
+button:hover,
+input[type="button"]:hover {
+  background-color: #e6c200;
+}
+
+/* === OUTPUT SECTION === */
+#output {
+  font-family: monospace;
+  background-color: #f8f8f8;
+  color: #333;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* === RESPONSIVE === */
+@media (max-width: 768px) {
+  .container {
+    padding: 1rem;
+    margin: 1rem;
+  }
+
+  input[type="text"],
+  select,
+  textarea {
+    font-size: 1rem;
+  }
+
+  button {
+    width: 100%;
+  }
+}
