@@ -1,6 +1,6 @@
 Bread of Life Schema JSON-LD Generator
 
-A lightweight tool for generating structured data that Google actually understands — all without touching a framework.
+A lightweight tool for generating structured data that Google actually understands, all without touching a framework.
 
 Built with pure vanilla JavaScript, modern CSS, and the same Spirit that raised Christ from the dead (Romans 8:11).
 
@@ -33,22 +33,6 @@ Why Use This
 - Fully structured markup
 - Google-ready for SEO
 
-How to Deploy on GitHub Pages
-
-1. Push this repo to GitHub under your account.
-2. Go to Settings > Pages.
-3. Under "Source", choose main branch and root folder (/).
-4. GitHub will give you a public URL.
-
-Example:
-https://bornagaincoder7.github.io/schema-generator/
-
-Project Structure
-
-index.html   - Markup and script logic
-style.css    - Responsive, minimalist CSS
-README.md    - You're reading it
-
 Philosophy
 
 This tool was created to keep things simple, clear, and ready to use in a real-world business setting — without the clutter of modern frontend bloat.
@@ -56,5 +40,5 @@ This tool was created to keep things simple, clear, and ready to use in a real-w
 Just one HTML file. One CSS file. No frameworks.
 Practical code, clean output, and it just works.
 
-For the Church. For business. For the Kingdom.
+For the fun of it. For business. For the Kingdom.
 
