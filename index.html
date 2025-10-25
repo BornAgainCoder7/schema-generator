@@ -16,7 +16,6 @@
       <option value="BlogPosting">BlogPosting</option>
       <option value="WebSite">WebSite</option>
       <option value="Person">Person</option>
-      <option value="SearchAction">SearchAction</option>
     </select>
 
     <form id="form"></form>
@@ -51,20 +50,17 @@
       Person: {
         name: 'e.g., Jane Doe',
         jobTitle: 'e.g., Pastor',
-        sameAs: 'e.g., https://www.linkedin.com/in/janedoe/'
+        sameAs: 'e.g., https://www.linkedin.com/in/janedoe/',
+        url: 'e.g., https://www.example.com',
+        image: 'e.g., https://example.com/photo.jpg',
       },
-      SearchAction: {
-        target: 'e.g., https://www.example.com/search?q={search_term_string}',
-        query: 'e.g., search_term_string'
-      }
-    };
+      };
 
     const fieldsByType = {
       LocalBusiness: ['name', 'url', 'telephone', 'streetAddress', 'addressLocality', 'addressRegion', 'postalCode', 'addressCountry'],
       BlogPosting: ['headline', 'author', 'publisher', 'datePublished', 'url', 'image'],
       WebSite: ['name', 'url'],
-      Person: ['name', 'jobTitle', 'sameAs'],
-      SearchAction: ['target', 'query']
+      Person: ['name', 'jobTitle', 'url', 'image', 'sameAs']
     };
 
     document.getElementById('type').addEventListener('change', e => generateFields(e.target.value));
@@ -116,15 +112,8 @@
         jsonLD.name = formData.get('name') || '';
         jsonLD.jobTitle = formData.get('jobTitle') || '';
         jsonLD.sameAs = formData.get('sameAs') || '';
-      } else if (type === 'SearchAction') {
-        jsonLD['@type'] = 'WebSite';
-        jsonLD.potentialAction = {
-          '@type': 'SearchAction',
-          target: formData.get('target') || '',
-          'query-input': `required name=${formData.get('query') || 'search_term_string'}`
-        };
       }
-
+        
       document.getElementById('output').value = JSON.stringify(jsonLD, null, 2);
     }
 
