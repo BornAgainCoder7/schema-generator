@@ -16,7 +16,6 @@ Schema types supported:
 - BlogPosting
 - WebSite
 - Person
-- SearchAction
 
 Each schema type includes:
 - Contextual input hints
@@ -35,10 +34,10 @@ Why Use This
 
 Philosophy
 
-This tool was created to keep things simple, clear, and ready to use in a real-world business setting — without the clutter of modern frontend bloat.
+This tool was created to keep things simple, clear, and ready to use in a real-world business setting, without the clutter of modern frontend bloat.
 
 Just one HTML file. One CSS file. No frameworks.
-Practical code, clean output, and it just works.
+Practical code, clean output, and it works.
 
-For the fun of it. For business. For the Kingdom.
+For the joy of it. For business. For the Kingdom.
 
