@@ -1,6 +1,6 @@
 Lion of Judah Schema JSON-LD Generator
 
-**Live Site:** [https://bornagaincoder7.github.io/schema/generator]  
+**Live Site:** [https://bornagaincoder7.github.io/schema-generator]  
 
 A lightweight tool for generating structured data that Google actually understands, all without touching a framework.
 
