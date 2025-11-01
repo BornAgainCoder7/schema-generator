@@ -1,4 +1,4 @@
-Bread of Life Schema JSON-LD Generator
+Lion of Judah Schema JSON-LD Generator
 
 A lightweight tool for generating structured data that Google actually understands, all without touching a framework.
 
