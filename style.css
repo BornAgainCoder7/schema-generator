@@ -8,7 +8,7 @@ body {
 }
 
 h1, h2, h3 {
-  text-transform: uppercase;
+  text-transform: none;
   font-weight: 600;
   color: #000;
 }
